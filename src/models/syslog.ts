@@ -14,7 +14,7 @@ export interface SyslogAttributes {
   msg: string;
 }
 
-export interface SyslogInstance extends Sequelize.Instance<SyslogAttributes> {
+export interface SyslogInstance extends Sequelize.Instance<SyslogAttributes>, SyslogAttributes {
 }
 
 export default database.define<SyslogInstance, SyslogAttributes>('syslog', {
