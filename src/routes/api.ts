@@ -63,7 +63,7 @@ router.get('/log/tags', async (ctx) => {
 });
 
 router.get('/log/addresses', async (ctx) => {
-  const tags = await Syslog.findAll({ attributes: [[Sequelize.literal('address tag'), 'address']] });
+  const tags = await Syslog.findAll({ attributes: [[Sequelize.literal('distinct address'), 'address']] });
   ctx.body = tags.map((item) => item.toJSON());
 });
 
