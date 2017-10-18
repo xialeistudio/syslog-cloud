@@ -1,0 +1,32 @@
+{
+  "name": "syslog-cloud",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/xialeistudio/syslog-cloud.git",
+  "author": "xialeistudio <xialeistudio@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -w",
+    "start": "node index",
+    "init": "node build/init"
+  },
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "koa-session": "^5.5.0",
+    "log4js": "^2.3.7",
+    "moment": "^2.19.1",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.15.0",
+    "syslogd": "^1.1.2"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/koa-router": "^7.0.23",
+    "@types/koa-session": "^3.0.5",
+    "@types/node": "^8.0.44",
+    "@types/sequelize": "^4.0.76",
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  }
+}
