@@ -16,6 +16,7 @@ class Application {
     async handleLogData(data) {
         data.time = moment(data.time).toDate();
         await syslog_1.default.create(data);
+        logger_1.default.info(data.address, data.msg);
     }
     startup() {
         this.syslogDaemon.listen(this.logPort);

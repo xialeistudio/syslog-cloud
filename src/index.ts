@@ -19,6 +19,7 @@ class Application {
   private async handleLogData(data: syslogd.Data) {
     data.time = moment(data.time).toDate();
     await Syslog.create(data);
+    logger.info(data.address, data.msg);
   }
 
   private startup() {
