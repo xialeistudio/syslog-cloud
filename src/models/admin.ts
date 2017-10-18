@@ -9,7 +9,7 @@ export interface AdminAttributes {
   updated_at: Date;
 }
 
-export interface AdminInstance extends Sequelize.Instance<AdminAttributes> {
+export interface AdminInstance extends Sequelize.Instance<AdminAttributes>, AdminAttributes {
 }
 
 export default database.define<AdminInstance, AdminAttributes>('admin', {
