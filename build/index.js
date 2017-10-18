@@ -18,8 +18,7 @@ class Application {
         await syslog_1.default.create(data);
     }
     startup() {
-        this.syslogDaemon.listen(this.logPort);
-        logger_1.default.info(`syslogd startup on ${this.logPort}`);
+        this.syslogDaemon.listen(this.logPort, () => logger_1.default.info(`syslogd startup on ${this.logPort}`));
     }
 }
 Application.bootstrap();
