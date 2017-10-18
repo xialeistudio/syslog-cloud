@@ -3,12 +3,28 @@ import * as syslogd from 'syslogd';
 import logger from './common/logger';
 import Syslog from './models/syslog';
 
-(async () => {
-  // syslogd
-  const logPort = Number(process.env.LOG_PORT || 514);
-  syslogd(async (data) => {
-    data.time = moment(data.time).toDate() as any;
+class Application {
+  public static bootstrap() {
+    return new Application();
+  }
+
+  private logPort = Number(process.env.LOG_PORT || 514);
+  private syslogDaemon: syslogd.Daemon;
+
+  constructor() {
+    this.syslogDaemon = syslogd(data => this.handleLogData(data));
+    this.startup();
+  }
+
+  private async handleLogData(data: syslogd.Data) {
+    data.time = moment(data.time).toDate();
     await Syslog.create(data);
-    logger.info(data.address, data.msg);
-  }).listen(logPort, () => logger.info(`syslogd startup on ${logPort}`));
-})();
+  }
+
+  private startup() {
+    this.syslogDaemon.listen(this.logPort);
+    logger.info(`syslogd startup on ${this.logPort}`);
+  }
+}
+
+Application.bootstrap();
