@@ -1,4 +1,5 @@
 import * as Router from 'koa-router';
+import * as Sequelize from 'sequelize';
 import authorize from '../middleware/authorization';
 import Admin from '../models/admin';
 import Syslog from '../models/syslog';
@@ -57,12 +58,12 @@ router.get('/log/list', async (ctx) => {
 });
 // tags
 router.get('/log/tags', async (ctx) => {
-  const tags = await Syslog.findAll({ distinct: true, attributes: ['tag'] });
+  const tags = await Syslog.findAll({ attributes: [[Sequelize.literal('distinct tag'), 'tag']] });
   ctx.body = tags.map((item) => item.toJSON());
 });
 
 router.get('/log/addresses', async (ctx) => {
-  const tags = await Syslog.findAll({ distinct: true, attributes: ['address'] });
+  const tags = await Syslog.findAll({ attributes: [[Sequelize.literal('address tag'), 'address']] });
   ctx.body = tags.map((item) => item.toJSON());
 });
 
