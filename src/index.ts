@@ -39,6 +39,7 @@ class Application {
   }
 
   private configuration() {
+    this.koa.keys = ['xialeistudio'];
     this.koa.use(errorHandler);
     this.koa.use(session(this.koa));
     this.koa.use(apiRoute.routes()).use(apiRoute.allowedMethods());

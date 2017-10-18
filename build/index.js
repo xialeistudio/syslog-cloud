@@ -34,6 +34,7 @@ class Application {
         });
     }
     configuration() {
+        this.koa.keys = ['xialeistudio'];
         this.koa.use(error_handler_1.default);
         this.koa.use(session(this.koa));
         this.koa.use(api_1.default.routes()).use(api_1.default.allowedMethods());
