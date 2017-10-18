@@ -54,16 +54,16 @@ router.get('/log/list', async (ctx) => {
     if (tag) {
         condition.tag = tag;
     }
-    const list = await admin_1.default.findAll({ where: condition, offset: (page - 1) * size, limit: size });
+    const list = await syslog_1.default.findAll({ where: condition, offset: (page - 1) * size, limit: size });
     ctx.body = list.map((item) => item.toJSON());
 });
 // tags
 router.get('/log/tags', async (ctx) => {
-    const tags = await admin_1.default.findAll({ distinct: true, attributes: ['tag'] });
+    const tags = await syslog_1.default.findAll({ distinct: true, attributes: ['tag'] });
     ctx.body = tags.map((item) => item.toJSON());
 });
 router.get('/log/addresses', async (ctx) => {
-    const tags = await admin_1.default.findAll({ distinct: true, attributes: ['address'] });
+    const tags = await syslog_1.default.findAll({ distinct: true, attributes: ['address'] });
     ctx.body = tags.map((item) => item.toJSON());
 });
 exports.default = router;
