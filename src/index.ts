@@ -22,8 +22,8 @@ class Application {
   }
 
   private startup() {
-    this.syslogDaemon.listen(this.logPort, () => console.log('123'));
-    logger.info(`syslogd startup on ${this.logPort}`);
+    this.syslogDaemon.listen(this.logPort);
+    logger.info(`syslogd startup on udp:${this.logPort}`);
   }
 }
 
